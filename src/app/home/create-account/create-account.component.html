@@ -1,5 +1,5 @@
 <mat-card>
-  <form>
+  <form (submit)="onCreateUser(userForm)" #userForm="ngForm">
     <div class="container">
       <div class="row">
         <div class="col-lg-4">
@@ -8,6 +8,28 @@
           <mat-panel-title>
             Complete the form to create an account.
           </mat-panel-title>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field>
+            <mat-label>First Name:</mat-label>
+            <input matInput type="text" name="firstName" ngModel #firstName>
+            <mat-error *ngIf="firstName.invalid">Please enter your first name.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field>
+            <mat-label>Last Name:</mat-label>
+            <input matInput type="text" name="lastName" ngModel #lastName>
+            <mat-error *ngIf="lastName.invalid">Please enter your last name.</mat-error>
+          </mat-form-field>
         </div>
         <div class="col-lg-4">
         </div>
