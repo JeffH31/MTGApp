@@ -1,0 +1,16 @@
+<main>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+      </div>
+      <div class="col-lg-4">
+          <button class="link" [class.active]="this.login" (click)="onLoginClick()">LOGIN</button>
+          <button class="link" [class.active]="!this.login" (click)="onCreateClick()">CREATE ACCOUNT</button>
+      </div>
+      <div class="col-lg-4">
+      </div>
+    </div>
+  </div>
+  <app-login *ngIf="this.login" ></app-login>
+  <app-create-account *ngIf="!this.login" ></app-create-account>
+</main>

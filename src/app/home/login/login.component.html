@@ -1,0 +1,46 @@
+<mat-card>
+  <form>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <mat-panel-title>
+            Login or create an account.
+          </mat-panel-title>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field>
+            <mat-label>Username:</mat-label>
+            <input matInput type="text" name="username" ngModel #username>
+            <mat-error *ngIf="username.invalid">Please enter your username or create one.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field>
+            <mat-label>Password:</mat-label>
+            <input matInput type="text" name="password" ngModel #password>
+            <mat-error *ngIf="password.invalid">Please enter your password.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <button mat-raised-button color="primary" type="submit" class="my-button">Login</button>
+        </div>
+        <div class="col-lg-4">
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>

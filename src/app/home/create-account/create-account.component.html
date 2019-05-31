@@ -1,0 +1,57 @@
+<mat-card>
+  <form>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <mat-panel-title>
+            Complete the form to create an account.
+          </mat-panel-title>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field>
+            <mat-label>Username:</mat-label>
+            <input matInput type="text" name="username" ngModel #username>
+            <mat-error *ngIf="username.invalid">Please enter a username.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field>
+            <mat-label>Password:</mat-label>
+            <input matInput type="text" name="password" ngModel #password>
+            <mat-error *ngIf="password.invalid">Please enter a password.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <mat-form-field>
+            <mat-label>Email:</mat-label>
+            <input matInput type="text" name="password" ngModel #email>
+            <mat-error *ngIf="email.invalid">Please enter your email.</mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+        </div>
+        <div class="col-lg-4">
+          <button mat-raised-button color="primary" type="submit" class="my-button">Create Account</button>
+        </div>
+        <div class="col-lg-4">
+        </div>
+      </div>
+    </div>
+  </form>
+</mat-card>

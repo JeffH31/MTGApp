@@ -1,0 +1,9 @@
+<mat-card>
+  <form (submit)="cardSearch(searchForm)" #searchForm="ngForm">
+    <mat-form-field>
+      <input matInput type="text" name="cardName" ngModel #cardName placeholder="Enter a card to lookup.">
+      <mat-error *ngIf="cardName.invalid">Please enter a card to lookup.</mat-error>
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Search</button>
+  </form>
+</mat-card>

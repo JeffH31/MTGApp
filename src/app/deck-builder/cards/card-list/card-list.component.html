@@ -1,0 +1,13 @@
+<mat-accordion multi="true" *ngIf="cards.length > 0">
+  <mat-expansion-panel *ngFor="let card of cards">
+    <mat-expansion-panel-header>
+      {{ card.name }} - {{ card.setName }}
+    </mat-expansion-panel-header>
+    <img src="{{ card.imageUrl }}" alt="">
+    <mat-action-row>
+      <button (click)="addCard(card)" mat-button color="primary">Add to deck</button>
+      <button (click)="removeCard(card)" mat-button color="warn">Remove from deck</button>
+    </mat-action-row>
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="cards.length <= 0">No cards lookedup yet.</p>

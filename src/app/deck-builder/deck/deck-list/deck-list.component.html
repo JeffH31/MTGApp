@@ -1,0 +1,23 @@
+<mat-accordion multi="true" *ngIf="cards.length > 0">
+  <mat-card *ngFor="let card of cards">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            {{ card.name }} - {{ card.manaCost }}
+          </div>
+          <div class="col-lg-1">
+            x1
+          </div>
+          <div class="col-lg-1">
+            <button (click)="increaseCard(card)">
+              <button (click)="increaseCard(card)" mat-rasied-button color="primary">-1</button>
+            </button>
+          </div>
+          <div class="col-lg-1">
+            <button (click)="decreaseCard(card)" mat-rasied-button color="warn">-1</button>
+          </div>
+        </div>
+      </div>
+  </mat-card>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="cards.length <= 0">No cards added yet.</p>
