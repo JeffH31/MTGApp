@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../shared/users.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-create-account',
@@ -14,6 +15,7 @@ export class CreateAccountComponent implements OnInit {
   }
 
   onCreateUser(form: NgForm) {
+    console.log('in onCreateUser in component')
     if (form.invalid) {
       return;
     }

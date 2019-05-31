@@ -14,6 +14,7 @@ export class UsersService {
 
   addUser(firstName: string, lastName: string, username: string, password: string, email: string) {
     const user: User = { id: null, firstName, lastName, username, password, email };
+    console.log('in addUser from user.service ' + user)
     this.http.post<{ message: string, userId: string }>('http://localhost:3000/api/users', user);
   }
 }

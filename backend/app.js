@@ -6,7 +6,9 @@ const User = require('./models/user');
 
 const app = express();
 
-mongoose.connect('mongodb://localhost/deck-builder')
+// mongoose.connect("mongodb://localhost:27017/YourDB", { useNewUrlParser: true });
+
+mongoose.connect('mongodb://localhost/deck-builder', { useNewUrlParser: true })
   .then(() => {
     console.log('Connected to deck-builder database');
   })
@@ -32,6 +34,7 @@ app.use((req, res, next) => {
 
 // Create
 app.post("/api/users", (req, res, next) => {
+  console.log('in post method from app.js');
   const user = new Post({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
