@@ -30,84 +30,65 @@ app.use((req, res, next) => {
   next();
 });
 
-async function createUser(newUser) {
-  // Assign the values
+// Create
+app.post("/api/users", (req, res, next) => {
+  const user = new Post({
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email
+  });
+  post.save().then(createdUser => {
+    res.status(201).json({
+      message: "User added successfully",
+      userId: createdUser._id
+    });
+  });
+});
+
+// Update
+app.put("/api/userss/:id", (req, res, next) => {
   const user = new User({
-    firstName: newUser.firstName,
-    lastName: newUser.lastName,
-    username: newUser.username,
-    password: newUser.password,
-    email: newUser.email
+    _id: req.body.id,
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    username: req.body.username,
+    password: req.body.password,
+    email: req.body.email
   });
-
-  // Check to see if username is taken already
-  const userUsername = await User.find({ username : newUser.username });
-
-  if (userUsername.length > 0)
-    return ({ err: 'This username is already taken.'});
-
-  // Check to see if email is already linked to another account
-  const userEmail = await User.find({ email: newUser.email });
-
-  if (userEmail.length > 0 )
-    return ({ err: 'The email provided is already linked to another account' });
-
-  // Display an alert
-  const result = await user.save();
-  console.log(result);
-}
-
-async function validateUserCredentials(enteredUser) {
-  // Assign the form values to variables
-  const username = enteredUser.username;
-  const password = enteredUser.password;
-
-  // Query for the user with the entered username
-  const user = await User.find({ username: username })
-  .limit(1)
-  .select({ username, password });
-
-  // Check if a user is found
-  if (user.length < 1)
-    return ({ err: 'No account with that username found. Please check the spelling and try again.' });
-
-  // Check if the passwords match
-  if (user.password === password)
-    return// Redirect to account page
-}
-
-async function deleteUser (username) {
-  // Find user with entered username
-  const user = await User.find({ username: username });
-
-  // If the username isn't found return
-  if (!user.username) return;
-
-  // Delete the user with the entered username
-  const result = await User.deleteOne({ username: username });
-  console.log(result);
-}
-
-async function editUser(editedUser) {
-  const oldUsername = editedUser.oldUsername;
-
-  // Find user to be updated usingtheir old username
-  const user = await User.find({ username: oldUsername });
-
-  // Check if user exists
-  if (!user) return;
-
-  // Update user's values
-  user.set({
-    firstName: editedUser.firstName,
-    lastName: editedUser.lastName,
-    username: editedUser.username,
-    password: editedUser.password,
-    email: editedUser.email
+  Post.updateOne({ _id: req.params.id }, user).then(result => {
+    res.status(200).json({ message: "Update successful!" });
   });
+});
 
-  // Alert the user of the update
-  console.log('Profile updated');
-}
+// Read all
+app.get("/api/users", (req, res, next) => {
+  User.find().then(documents => {
+    res.status(200).json({
+      message: "Users fetched successfully!",
+      users: documents
+    });
+  });
+});
+
+// Read one
+app.get("/api/users/:id", (req, res, next) => {
+  User.findById(req.params.id).then(user => {
+    if (user) {
+       res.status(200).json(user);
+    } else  {
+      res.status(404).json({ message: 'User not found!' });
+    }
+  });
+});
+
+// Delete
+app.delete("/api/users/:id", (req, res, next) => {
+  User.deleteOne({ _id: req.params.id }).then(result => {
+    console.log(result);
+    res.status(200).json({ message: "User deleted!" });
+  });
+});
 
 module.exports = app;
