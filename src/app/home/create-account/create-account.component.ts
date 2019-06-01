@@ -20,7 +20,13 @@ export class CreateAccountComponent implements OnInit {
       return;
     }
     
-    this.service.addUser(form.value.firstName, form.value.lastName, form.value.username, form.value.password, form.value.email);
+    this.service.addUser(
+      form.value.firstName,
+      form.value.lastName,
+      form.value.username,
+      form.value.password,
+      form.value.email
+    );
     
     form.resetForm();
   }

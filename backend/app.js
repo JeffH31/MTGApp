@@ -6,15 +6,13 @@ const User = require('./models/user');
 
 const app = express();
 
-// mongoose.connect("mongodb://localhost:27017/YourDB", { useNewUrlParser: true });
-
 mongoose.connect('mongodb://localhost/deck-builder', { useNewUrlParser: true })
-  .then(() => {
-    console.log('Connected to deck-builder database');
-  })
-  .catch(() => {
-    console.log('Connection failed');
-  });
+ .then(() => {
+   console.log('Connected to deck-builder database!');
+ })
+ .catch(() => {
+   console.log('Connection failed!');
+ });
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -27,7 +25,7 @@ app.use((req, res, next) => {
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET, POST, PATCH, DELETE, OPTIONS"
+    "GET, POST, PATCH, PUT, DELETE, OPTIONS"
   );
   next();
 });
@@ -35,14 +33,14 @@ app.use((req, res, next) => {
 // Create
 app.post("/api/users", (req, res, next) => {
   console.log('in post method from app.js');
-  const user = new Post({
+  const user = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
     username: req.body.username,
     password: req.body.password,
     email: req.body.email
-  });
-  post.save().then(createdUser => {
+  });  
+  user.save().then(createdUser => {
     res.status(201).json({
       message: "User added successfully",
       userId: createdUser._id
@@ -60,7 +58,7 @@ app.put("/api/userss/:id", (req, res, next) => {
     password: req.body.password,
     email: req.body.email
   });
-  Post.updateOne({ _id: req.params.id }, user).then(result => {
+  User.updateOne({ _id: req.params.id }, user).then(result => {
     res.status(200).json({ message: "Update successful!" });
   });
 });
