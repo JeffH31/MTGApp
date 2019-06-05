@@ -13,8 +13,10 @@ export class UsersService {
   constructor(private http: HttpClient) { }
 
   addUser(firstName: string, lastName: string, username: string, password: string, email: string) {
+    console.log('email: ' + email);
     const user: User = { id: null, firstName, lastName, username, password, email };
-    console.log(user)
+    console.log('user.email: ' + user.email);
+    console.log('user.firstName: ' + user.firstName);
     this.http
       .post<{ message: string, userId: string }>('http://localhost:3000/api/users', user)
       .subscribe(responseData => {

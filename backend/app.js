@@ -39,7 +39,8 @@ app.post("/api/users", (req, res, next) => {
     username: req.body.username,
     password: req.body.password,
     email: req.body.email
-  });  
+  });
+  console.log('user.email: ' + user.email);
   user.save().then(createdUser => {
     res.status(201).json({
       message: "User added successfully",

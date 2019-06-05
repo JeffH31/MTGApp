@@ -20,6 +20,7 @@ export class CreateAccountComponent implements OnInit {
       return;
     }
     
+    console.log('in component, email: ' + form.value.email);
     this.service.addUser(
       form.value.firstName,
       form.value.lastName,
