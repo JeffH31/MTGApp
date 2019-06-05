@@ -1,3 +1,11 @@
-<mat-card>
-  <label>{{ username }}</label>
+<label>{{ username }}</label>
+<a mat-button routerLink="/deck-builder" routerLinkActive="mat-accent">New Deck</a>
+<mat-card *ngFor="let deck of decks">
+  <mat-panel-title>
+    {{ deck.deckName }}
+  </mat-panel-title>
+  <mat-action-row>
+    <button (click)="editDeck(deck)" mat-button color="primary">Edit</button>
+    <button (click)="deleteDeck(deck)" mat-button color="warn">Delete</button>
+  </mat-action-row>
 </mat-card>
