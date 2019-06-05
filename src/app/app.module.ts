@@ -42,16 +42,16 @@ import { CreateAccountComponent } from './home/create-account/create-account.com
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,
-    RouterModule.forRoot([
-      {
-        path: 'home',
-        component: HomeComponent
-      },
-      {
-        path: 'deck-builder',
-        component: DeckBuilderComponent
-      }
-    ])
+    // RouterModule.forRoot([
+    //   {
+    //     path: 'home',
+    //     component: HomeComponent
+    //   },
+    //   {
+    //     path: 'deck-builder',
+    //     component: DeckBuilderComponent
+    //   }
+    // ])
   ],
   providers: [],
   bootstrap: [AppComponent]
