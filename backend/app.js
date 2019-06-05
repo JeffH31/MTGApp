@@ -63,7 +63,7 @@ app.put("/api/userss/:id", (req, res, next) => {
   });
 });
 
-// Read all
+// Get all
 app.get("/api/users", (req, res, next) => {
   User.find().then(documents => {
     res.status(200).json({
@@ -73,12 +73,15 @@ app.get("/api/users", (req, res, next) => {
   });
 });
 
-// Read one
-app.get("/api/users/:id", (req, res, next) => {
-  User.findById(req.params.id).then(user => {
+// Get one
+app.get("/api/users/:username", (req, res, next) => {
+  console.log('req.params.username: ' + req.params.username);
+  User.find({ username: req.params.username }).then(user => {
     if (user) {
+      console.log('found match' + user);
        res.status(200).json(user);
     } else  {
+      console.log('no match found');
       res.status(404).json({ message: 'User not found!' });
     }
   });
