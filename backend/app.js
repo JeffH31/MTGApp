@@ -3,6 +3,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 
 const User = require('./models/user');
+const Deck = require('./models/deck');
 
 const app = express();
 
@@ -50,7 +51,7 @@ app.post("/api/users", (req, res, next) => {
 });
 
 // Update
-app.put("/api/userss/:id", (req, res, next) => {
+app.put("/api/users/:id", (req, res, next) => {
   const user = new User({
     _id: req.body.id,
     firstName: req.body.firstName,
@@ -74,13 +75,25 @@ app.get("/api/users", (req, res, next) => {
   });
 });
 
+app.get("/api/decks", (req, res, next) => {
+  Deck.find({ username: req.params.username }).then(decks => {
+    if (decks) {
+      console.log('found decks: ' + decks);
+      res.status(200).json(decks);
+    } else {
+      console.log('no decks found');
+      res.status(404).json({ messaage: 'Decks not found' });
+    }
+  });
+});
+
 // Get one
 app.get("/api/users/:username", (req, res, next) => {
   console.log('req.params.username: ' + req.params.username);
   User.find({ username: req.params.username }).then(user => {
     if (user) {
-      console.log('found match' + user);
-       res.status(200).json(user);
+      console.log('found username match' + user);
+      res.status(200).json(user);
     } else  {
       console.log('no match found');
       res.status(404).json({ message: 'User not found!' });

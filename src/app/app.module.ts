@@ -17,6 +17,7 @@ import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login/login.component';
 import { CreateAccountComponent } from './home/create-account/create-account.component';
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CreateAccountComponent } from './home/create-account/create-account.com
     HomeComponent,
     LoginComponent,
     CreateAccountComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

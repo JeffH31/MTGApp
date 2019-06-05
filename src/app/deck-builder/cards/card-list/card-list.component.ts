@@ -1,4 +1,4 @@
-import { DeckService } from './../../Shared/deck.service';
+import { DeckService } from '../../shared/deck.service';
 import { CardService } from '../../Shared/card.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';

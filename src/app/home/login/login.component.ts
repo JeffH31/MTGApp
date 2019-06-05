@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { NgForm, Form } from '@angular/forms';
 import { UsersService } from '../shared/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,8 +10,7 @@ import { UsersService } from '../shared/users.service';
 })
 export class LoginComponent implements OnInit {
   
-
-  constructor(private service: UsersService) { }
+  constructor(private service: UsersService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -31,6 +31,8 @@ export class LoginComponent implements OnInit {
 
       if (userData[0].username === enteredUsername && userData[0].password === enteredPassword) {
         console.log('YEET MUTHAFUCKKAAA!!!')
+        // go to profile page
+        this.router.navigateByUrl('/profile/' + userData[0].username);
       }
     });
   }

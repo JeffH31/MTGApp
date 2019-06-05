@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DeckService } from '../../Shared/deck.service';
+import { DeckService } from '../../shared/deck.service';
 
 @Component({
   selector: 'app-deck-list',
