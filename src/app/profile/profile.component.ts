@@ -22,12 +22,26 @@ export class ProfileComponent implements OnInit {
         this.username = paramMap.get('username');
         this.service.getDecks(this.username);
         this.decksSub = this.service.getDecksUpdateListener()
-        .subscribe((decks: Deck[]) => {
-          this.decks = decks;
-        }); 
+          .subscribe((decks: Deck[]) => {
+            this.decks = decks;
+          })
       } else {
-        console.log('error ocurred.');
+        console.log('Error ocurred.');
       }
-    });  
+    })
   }
+
+  // ngOnInit() {
+  //   this.route.paramMap.subscribe((paramMap: ParamMap) => {
+  //     if (paramMap.has('username')) {
+  //       this.username = paramMap.get('username');
+  //       this.service.getDecks(this.username)
+  //       .subscribe(decks => {
+  //         console.log(decks);
+  //     });
+  //     } else {
+  //       console.log('error ocurred.');
+  //     }
+  //   });  
+  // }
 }

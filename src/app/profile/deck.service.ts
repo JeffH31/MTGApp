@@ -8,7 +8,8 @@ import { Subject } from 'rxjs';
   providedIn: 'root'
 })
 export class DeckService {
-  private decks: Deck[] = [];
+  // private decks: Deck[] = [];
+  private decks: any[] = [];
   private decksUpdated = new Subject<Deck []>();
 
   constructor(private http: HttpClient) { }
@@ -17,10 +18,25 @@ export class DeckService {
     return this.decksUpdated.asObservable();
   }
 
-  getDecks(username: String) {
+  addDeck(deckName: string, creatorUsername: string, cards: any[]) {
+    const deck: Deck = { id: null, deckName, creatorUsername, cards };
     this.http
-      .get<{message: string, decks: any}>(
-        'http://localhost:3000/api/decks'
+      .post<{ message: string, userId: string }>('http://localhost:3000/api/users', deck)
+      .subscribe(responseData => {
+        console.log(responseData.message);
+      });
+  }
+
+  // getDecks(creatorUsername: String) {
+  //   return this.http.get<{ _id: string; deckName: string; creatorName: string; cards: any[] }>(
+  //     'http://localhost:3000/api/decks/' + creatorUsername
+  //     );
+  // }
+
+  getDecks(creatorUsername) {
+    this.http
+      .get<{ decks: any[] }>(
+        'http://localhost:3000/api/decks/' + creatorUsername
       )
       .pipe(map((deckData) => {
         return deckData.decks.map(deck => {

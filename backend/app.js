@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 
 // Create
 app.post("/api/users", (req, res, next) => {
-  console.log('in post method from app.js');
+  console.log('in users post method from app.js');
   const user = new User({
     firstName: req.body.firstName,
     lastName: req.body.lastName,
@@ -41,11 +41,25 @@ app.post("/api/users", (req, res, next) => {
     password: req.body.password,
     email: req.body.email
   });
-  console.log('user.email: ' + user.email);
   user.save().then(createdUser => {
     res.status(201).json({
       message: "User added successfully",
       userId: createdUser._id
+    });
+  });
+});
+
+app.post("/api/decks", (req, res, next) => {
+  console.log('in decks post method for app.js');
+  const deck = new Deck({
+    deckName: req.body.deckName,
+    creatorUsername: req.body.creatorUsername,
+    cards: req.body.cards
+  });
+  deck.save().then(createdDeck => {
+    res.status(201).json({
+      message: "Deck successfully added.",
+      deckId: createdDeck._id
     });
   });
 });
@@ -75,11 +89,14 @@ app.get("/api/users", (req, res, next) => {
   });
 });
 
-app.get("/api/decks", (req, res, next) => {
-  Deck.find({ username: req.params.username }).then(decks => {
-    if (decks) {
-      console.log('found decks: ' + decks);
-      res.status(200).json(decks);
+app.get("/api/decks/:username", (req, res, next) => {
+  Deck.find({ creatorUsername: req.params.username }).then(documents => {
+    if (documents) {
+      console.log('found decks: ' + documents);
+      res.status(200).json({
+        message: "Decks fetched successfully!",
+        decks: documents
+      });
     } else {
       console.log('no decks found');
       res.status(404).json({ messaage: 'Decks not found' });

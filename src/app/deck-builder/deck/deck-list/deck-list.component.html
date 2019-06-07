@@ -6,12 +6,10 @@
             {{ card.name }} - {{ card.manaCost }}
           </div>
           <div class="col-lg-1">
-            x1
+            x{{ copies }}
           </div>
           <div class="col-lg-1">
-            <button (click)="increaseCard(card)">
-              <button (click)="increaseCard(card)" mat-rasied-button color="primary">-1</button>
-            </button>
+            <button (click)="increaseCard(card)" mat-rasied-button color="primary">+1</button>
           </div>
           <div class="col-lg-1">
             <button (click)="decreaseCard(card)" mat-rasied-button color="warn">-1</button>
