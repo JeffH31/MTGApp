@@ -10,14 +10,13 @@ import { MatInputModule, MatCardModule, MatButtonModule, MatToolbarModule, MatEx
 import { FormsModule } from '@angular/forms';
 import { CardListComponent } from './deck-builder/cards/card-list/card-list.component';
 import { HeaderComponent } from './header/header.component';
-import { DeckHeaderComponent } from './deck-builder/deck/deck-header/deck-header.component';
-import { DeckListComponent } from './deck-builder/deck/deck-list/deck-list.component';
 import { DeckBuilderComponent } from './deck-builder/deck-builder.component';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './home/login/login.component';
 import { CreateAccountComponent } from './home/create-account/create-account.component';
 import { ProfileComponent } from './profile/profile.component';
+import { DeckComponent } from './deck-builder/deck/deck.component';
 
 @NgModule({
   declarations: [
@@ -25,13 +24,12 @@ import { ProfileComponent } from './profile/profile.component';
     CardLookupComponent,
     CardListComponent,
     HeaderComponent,
-    DeckHeaderComponent,
-    DeckListComponent,
     DeckBuilderComponent,
     HomeComponent,
     LoginComponent,
     CreateAccountComponent,
     ProfileComponent,
+    DeckComponent,
   ],
   imports: [
     BrowserModule,

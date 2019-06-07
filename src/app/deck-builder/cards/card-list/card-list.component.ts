@@ -1,4 +1,3 @@
-import { DeckService } from '../../shared/deck.service';
 import { CardService } from '../../Shared/card.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -12,7 +11,7 @@ export class CardListComponent implements OnInit, OnDestroy {
   cards: any[] = [];
   private cardsSub: Subscription;
 
-  constructor(private cardService: CardService, private deckService: DeckService) { }
+  constructor(private cardService: CardService) { }
 
   ngOnInit() {
     this.cardsSub = this.cardService.getCardsUpdatedListener()
@@ -26,10 +25,6 @@ export class CardListComponent implements OnInit, OnDestroy {
   }
 
   addCard(card: any) {
-    this.deckService.addToDeck(card);
-  }
-
-  removeCard(card: any) {
-    this.deckService.removeFromDeck(card);
+    this.cardService.addToDeck(card);
   }
 }

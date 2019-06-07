@@ -31,17 +31,7 @@ export class ProfileComponent implements OnInit {
     })
   }
 
-  // ngOnInit() {
-  //   this.route.paramMap.subscribe((paramMap: ParamMap) => {
-  //     if (paramMap.has('username')) {
-  //       this.username = paramMap.get('username');
-  //       this.service.getDecks(this.username)
-  //       .subscribe(decks => {
-  //         console.log(decks);
-  //     });
-  //     } else {
-  //       console.log('error ocurred.');
-  //     }
-  //   });  
-  // }
+  deleteDeck(deckId: string) {
+    this.service.deleteDeck(deckId);
+  }
 }

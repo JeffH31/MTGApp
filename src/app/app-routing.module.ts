@@ -10,6 +10,7 @@ const routes: Routes = [
   { path: 'create-account', component: CreateAccountComponent },
   { path: 'deck-builder', component: DeckBuilderComponent },
   { path: 'profile/:username', component: ProfileComponent },
+  { path: 'edit/:deckId', component: DeckBuilderComponent }
 ];
 
 @NgModule({

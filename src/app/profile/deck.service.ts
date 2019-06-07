@@ -27,12 +27,6 @@ export class DeckService {
       });
   }
 
-  // getDecks(creatorUsername: String) {
-  //   return this.http.get<{ _id: string; deckName: string; creatorName: string; cards: any[] }>(
-  //     'http://localhost:3000/api/decks/' + creatorUsername
-  //     );
-  // }
-
   getDecks(creatorUsername) {
     this.http
       .get<{ decks: any[] }>(
@@ -50,6 +44,15 @@ export class DeckService {
       }))
       .subscribe((transformedDecks) => {
         this.decks = transformedDecks;
+        this.decksUpdated.next([...this.decks]);
+      });
+  }
+
+  deleteDeck(deckId: string) {
+    this.http.delete('http://localhost:3000/api/decks/' + deckId)
+      .subscribe(() => {
+        const updatedDecks = this.decks.filter(deck => deck.id !== deckId);
+        this.decks = updatedDecks;
         this.decksUpdated.next([...this.decks]);
       });
   }

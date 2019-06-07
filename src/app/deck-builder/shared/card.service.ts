@@ -8,7 +8,9 @@ import { Subject } from 'rxjs';
 export class CardService {
   rootURL = 'https://api.magicthegathering.io/v1/cards?name=';
   cards: any;
-  private cardsUpdated = new Subject<any []>();
+  card: any;
+  private cardsUpdated = new Subject<any []>();  
+  private deckUpdated = new Subject<any>();
 
   constructor(private http: HttpClient) { }
 
@@ -25,5 +27,14 @@ export class CardService {
       this.cardsUpdated.next(this.cards.cards);
       console.log(this.cardsUpdated + ' cardsUpdated');
     });
+  }
+
+  getDeckUpdatedListener() {
+    return this.deckUpdated.asObservable();
+  }
+
+  addToDeck(card: any) {
+    this.card = card;
+    this.deckUpdated.next(this.card);
   }
 }
